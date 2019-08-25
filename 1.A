@@ -1,0 +1,108 @@
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+using namespace std;
+void search(int A[],int n, int val)
+{
+	int flag=0;
+	for (int i = 0; i < n; ++i)
+	{
+		if (A[i] == val)
+			{
+				cout<<" \n present at location:"<<i<<endl;
+				flag = 1;
+	
+			}
+	}
+	if(flag==0)
+		cout<<val<<" \n not present in array";
+}
+int* sort(int A[], int n){
+	int *B=new int[n];
+	for (int i = 0; i < n; ++i)
+		B[i]=A[i];
+	int tmp;
+	for(int i = 0; i <n; i++)
+	{
+		for (int j = i+1; j <n; ++j)
+		{
+			if (B[i]>B[j])
+			{
+				tmp = B[i];
+				B[i]=B[j];
+				B[j]=tmp;
+			}
+		}
+	}
+	return B;
+}
+int* reverse(int A[], int n)
+{
+	int *B= new int[n];
+	for (int i = 0; i < n; ++i)
+		B[i]=A[i];
+	int tmp;
+	for(int i=0, j=n-1; i<n/2; i++, j--)
+	{
+	  tmp= B[i];
+	  B[i]=B[j];
+	  B[j]=tmp;
+	}
+	return B;
+}
+void display(int A[],int n)
+{
+	for (int i = 0; i < n; ++i)
+	cout<<A[i]<<" ";
+}
+int main()
+{
+	int n;
+	system("cls");
+	cout<<"\n enter the size of array: ";
+	cin>>n;
+	int *A=new int[n];
+	cout<<"enter "<<n<<"numbers......\n";
+	for (int i = 0; i < n; ++i)
+		cin>>A[i];
+	int ch;
+	int *x;
+	do{
+		system("cls");
+		cout<<"original array \n";
+		display(A, n);
+		cout<<"\n menu(1.search 2.sort, 3.reverse, 4.exit)";
+		cout<<" \n enter the choice";
+		cin>>ch;
+		switch(ch){
+			case 1:
+			int val;
+			cout<<"enter the no to search :";
+			cin>>val;
+			search(A, n,val);
+			break;
+			case 2:
+			x=sort(A, n);
+			cout<<"\n sorted array:";
+			display(x, n);
+			delete []x;
+			break;
+			case 3:
+			x=reverse(A, n);
+			cout<<"\n reverzse the array";
+			display(x, n);
+			delete []x;
+			break;
+			case 4:
+			cout<<"\n stop proccesing..";
+            break;
+            default:
+ 
+            cout<<"\n invalid entry  ";
+			}
+            getch();
+}
+while(ch!=4);
+delete []A;
+return 0;
+}
