@@ -122,5 +122,5 @@ int main()
 			break;
 		}
 		getch();
-	}
+		}
 }
